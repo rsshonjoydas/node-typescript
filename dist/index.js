@@ -8,13 +8,11 @@ const express_1 = __importDefault(require("express"));
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 // ? internal imports
-const routes_1 = require("./controllers/routes");
+const routes_1 = __importDefault(require("./controllers/routes"));
 const PORT = process.env.PORT || 5000;
 const init = () => {
     let app = express_1.default();
-    routes_1.routes.forEach((route) => {
-        app[route.http](route.path, route.handler);
-    });
+    app.use('/api', routes_1.default);
     app.use('/', (req, res) => {
         res.send('RS Shonjoy' + new Date());
     });

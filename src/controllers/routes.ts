@@ -1,4 +1,4 @@
-import { Application, Request, Response } from 'express';
+import express, { Application, Request, Response, Router } from 'express';
 import { routes as studentRoutes } from './student.controller';
 
 export type Handler = (req: Request, res: Response) => void;
@@ -10,7 +10,7 @@ export interface IRoute {
 }
 
 // TODO: dynamic routing setup
-export const routes: IRoute[] = [
+const routes: IRoute[] = [
   {
     http: 'get',
     path: '/',
@@ -34,3 +34,11 @@ export const routes: IRoute[] = [
   },
   ...studentRoutes,
 ];
+
+let router: Router = express.Router();
+
+routes.forEach((route) => {
+  (router as any)[route.http](route.path, route.handler);
+});
+
+export default router;
