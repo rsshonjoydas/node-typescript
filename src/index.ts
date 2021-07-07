@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 // ? internal imports
-import { routes } from './routes';
+import { routes } from './controllers/routes';
 
 const PORT = process.env.PORT || 5000;
 

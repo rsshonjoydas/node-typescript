@@ -1,4 +1,5 @@
 import { Application, Request, Response } from 'express';
+import { routes as studentRoutes } from './student.controller';
 
 export type Handler = (req: Request, res: Response) => void;
 
@@ -31,4 +32,5 @@ export const routes: IRoute[] = [
       res.send(`thanks for shonjoy ${req.method}`);
     },
   },
+  ...studentRoutes,
 ];
