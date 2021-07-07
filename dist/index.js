@@ -8,34 +8,11 @@ const express_1 = __importDefault(require("express"));
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 // ? internal imports
+const routes_1 = require("./routes");
 const PORT = process.env.PORT || 5000;
 const init = () => {
     let app = express_1.default();
-    // TODO: dynamic routing setup
-    let routes = [
-        {
-            http: 'get',
-            path: '/',
-            handler: (req, res) => {
-                res.send(`thanks ${req.method}`);
-            },
-        },
-        {
-            http: 'get',
-            path: '/rs',
-            handler: (req, res) => {
-                res.send(`thanks for rs ${req.method}`);
-            },
-        },
-        {
-            http: 'get',
-            path: '/shonjoy',
-            handler: (req, res) => {
-                res.send(`thanks for shonjoy ${req.method}`);
-            },
-        },
-    ];
-    routes.forEach((route) => {
+    routes_1.routes.forEach((route) => {
         app[route.http](route.path, route.handler);
     });
     app.use('/', (req, res) => {
