@@ -1,8 +1,10 @@
 import { IRoute } from './routes';
 import { Request, Response } from 'express';
+import { getStudent } from '../services/student.services';
 
-const getHandler = (req: Request, res: Response) => {
-  res.send(`thanked ${req.method}`);
+const getHandler = async (req: Request, res: Response) => {
+  const students = await getStudent();
+  res.send(students);
 };
 
 const postHandler = (req: Request, res: Response) => {

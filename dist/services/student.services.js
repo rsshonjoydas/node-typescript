@@ -9,25 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.routes = void 0;
-const student_services_1 = require("../services/student.services");
-const getHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const students = yield student_services_1.getStudent();
-    res.send(students);
+exports.getStudent = void 0;
+const getStudent = () => __awaiter(void 0, void 0, void 0, function* () {
+    return yield [
+        {
+            id: '111',
+            name: 'Shonjoy',
+            phone: '01311401701',
+            email: 'rsshonjoydas@gmail.com',
+        },
+    ];
 });
-const postHandler = (req, res) => {
-    res.send(`thanks for ${req.method}`);
-};
-exports.routes = [
-    {
-        http: 'get',
-        path: '/student',
-        handler: getHandler,
-    },
-    {
-        http: 'post',
-        path: '/student',
-        handler: postHandler,
-    },
-];
-//# sourceMappingURL=student.controller.js.map
+exports.getStudent = getStudent;
+//# sourceMappingURL=student.services.js.map
