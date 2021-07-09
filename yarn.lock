@@ -93,7 +93,7 @@
     "@types/bson" "*"
     "@types/node" "*"
 
-"@types/node@*":
+"@types/node@*", "@types/node@^16.0.0":
   version "16.0.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-16.0.0.tgz"
   integrity sha512-TmCW5HoZ2o2/z2EYi109jLqIaPIi9y/lc2LmDCWzuCi35bcaQ+OtUh6nwBiFK7SOu25FAU5+YKdqFZUwtqGSdg==
@@ -102,11 +102,6 @@
   version "15.14.1"
   resolved "https://registry.npmjs.org/@types/node/-/node-15.14.1.tgz"
   integrity sha512-wF6hazbsnwaW3GhK4jFuw5NaLDQVRQ6pWQUGAUrJzxixFkTaODSiAKMPXuHwPEPkAKQWHAzj6uJ5h+3zU9gQxg==
-
-"@types/node@^16.0.0":
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.0.0.tgz#067a6c49dc7a5c2412a505628e26902ae967bf6f"
-  integrity sha512-TmCW5HoZ2o2/z2EYi109jLqIaPIi9y/lc2LmDCWzuCi35bcaQ+OtUh6nwBiFK7SOu25FAU5+YKdqFZUwtqGSdg==
 
 "@types/qs@*":
   version "6.9.6"
@@ -1380,6 +1375,11 @@ touch@^3.1.0:
   integrity sha512-WBx8Uy5TLtOSRtIq+M03/sKDrXCLHxwDcquSP2c43Le03/9serjQBIztjRz6FkJez9D/hleyAXTBGLwwZUw9lA==
   dependencies:
     nopt "~1.0.10"
+
+ts-mongoose@^0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/ts-mongoose/-/ts-mongoose-0.0.24.tgz#d6d1d4c5c62669560a3f3e26c0dd8a7365d1aee4"
+  integrity sha512-BaiyNFqieRqEBnvj2pgWB6/eQJRm7U18kAzDJ92/sfcFx1aQBZeZztzutxr49VVlUvPHxukleIoU/t3VMCBsSA==
 
 ts-node@^10.0.0:
   version "10.0.0"
