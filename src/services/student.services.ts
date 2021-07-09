@@ -31,6 +31,13 @@ export interface StudentViewModel {
   email: string;
 }
 
+const convert = (model: Student): StudentViewModel => {
+  let viewModel: StudentViewModel = {
+    ...JSON.parse(JSON.stringify(model)),
+  };
+  return viewModel;
+};
+
 export interface StudentRequestModel {
   id: string;
   name: string;
@@ -39,14 +46,11 @@ export interface StudentRequestModel {
 }
 
 export const getStudent = async (): Promise<StudentViewModel[]> => {
-  return await [
-    {
-      id: '111',
-      name: 'Shonjoy',
-      phone: '01311401701',
-      email: 'rsshonjoydas@gmail.com',
-    },
-  ];
+  const students = await StudentDocument.find().exec();
+  const newViewModel: StudentViewModel[] = students.map((student) =>
+    convert(student)
+  );
+  return newViewModel;
 };
 
 export const save = async (payload: any): Promise<string> => {

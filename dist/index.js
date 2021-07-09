@@ -53,8 +53,4 @@ const init = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`app listing to port ${PORT}`);
 });
 init();
-// const app = init();
-// app.listen(PORT, () => {
-//   console.log(`app listing to port ${PORT}`);
-// });
 //# sourceMappingURL=index.js.map

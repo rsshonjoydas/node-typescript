@@ -49,8 +49,3 @@ const init = async (): Promise<void> => {
 };
 
 init();
-
-// const app = init();
-// app.listen(PORT, () => {
-//   console.log(`app listing to port ${PORT}`);
-// });

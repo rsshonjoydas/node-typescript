@@ -23,15 +23,14 @@ const StudentSchema = new Schema({
     modifiedAt: { type: Date },
 });
 const StudentDocument = mongoose_1.default.model('Student', StudentSchema, 'Students');
+const convert = (model) => {
+    let viewModel = Object.assign({}, JSON.parse(JSON.stringify(model)));
+    return viewModel;
+};
 const getStudent = () => __awaiter(void 0, void 0, void 0, function* () {
-    return yield [
-        {
-            id: '111',
-            name: 'Shonjoy',
-            phone: '01311401701',
-            email: 'rsshonjoydas@gmail.com',
-        },
-    ];
+    const students = yield StudentDocument.find().exec();
+    const newViewModel = students.map((student) => convert(student));
+    return newViewModel;
 });
 exports.getStudent = getStudent;
 const save = (payload) => __awaiter(void 0, void 0, void 0, function* () {
