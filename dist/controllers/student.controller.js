@@ -10,14 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.routes = void 0;
-const student_services_1 = require("./../services/student.services");
-const student_services_2 = require("../services/student.services");
+const student_services_1 = require("../services/student.services");
 const getHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const students = yield student_services_2.getStudent();
+    const students = yield student_services_1.getStudent();
     res.send(students);
 });
+const collection = student_services_1.StudentDocument;
 const postHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let savedId = yield student_services_1.save(req.body);
+    let savedId = yield student_services_1.save(collection, req.body);
     res.send(`thanks for ${savedId}`);
 });
 exports.routes = [

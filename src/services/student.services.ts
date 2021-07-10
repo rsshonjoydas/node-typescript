@@ -18,7 +18,7 @@ export interface Student extends mongoose.Document {
   modifiedAt: Date;
 }
 
-const StudentDocument = mongoose.model<Student>(
+export const StudentDocument: mongoose.Model<Student> = mongoose.model<Student>(
   'Student',
   StudentSchema,
   'Students'
@@ -53,12 +53,16 @@ export const getStudent = async (): Promise<StudentViewModel[]> => {
   return newViewModel;
 };
 
-export const save = async (payload: any): Promise<string> => {
-  const newStudent = new StudentDocument({
+export const save = async <T extends mongoose.Model<any>>(
+  collection: T,
+  payload: any
+): Promise<string> => {
+  const obj = {
     ...payload,
     id: new mongoose.Types.ObjectId(),
     createdAt: new Date(),
-  });
-  const saveStudent = await newStudent.save();
-  return saveStudent.id;
+    modifiedAt: new Date(),
+  };
+  const saveObj = await collection.create(obj);
+  return saveObj.id;
 };
