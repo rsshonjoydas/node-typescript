@@ -1,20 +1,16 @@
-import {
-  save,
-  StudentDocument,
-  getStudent,
-} from '../services/student.services';
+import * as service from '../services/student.services';
 import { IRoute } from './routes';
 import { Request, Response } from 'express';
 
 const getHandler = async (req: Request, res: Response) => {
-  const students = await getStudent();
+  const students = await service.getStudent();
   res.send(students);
 };
 
-const collection = StudentDocument;
+const collection = service.StudentDocument;
 
 const postHandler = async (req: Request, res: Response) => {
-  let savedId = await save(collection, req.body);
+  let savedId = await service.save(collection, req.body);
   res.send(`thanks for ${savedId}`);
 };
 
