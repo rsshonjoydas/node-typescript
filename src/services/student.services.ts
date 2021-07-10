@@ -45,12 +45,11 @@ export interface StudentRequestModel {
   email: string;
 }
 
-export const getStudent = async (): Promise<StudentViewModel[]> => {
-  const students = await StudentDocument.find().exec();
-  const newViewModel: StudentViewModel[] = students.map((student) =>
-    convert(student)
-  );
-  return newViewModel;
+export const getAll = async <T extends mongoose.Document>(
+  collection: mongoose.Model<T>
+): Promise<T[]> => {
+  const models = await collection.find().exec();
+  return models;
 };
 
 export const save = async <T extends mongoose.Model<any>>(

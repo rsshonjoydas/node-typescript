@@ -3,7 +3,7 @@ import { IRoute } from './routes';
 import { Request, Response } from 'express';
 
 const getHandler = async (req: Request, res: Response) => {
-  const students = await service.getStudent();
+  const students = await service.getAll(collection);
   res.send(students);
 };
 

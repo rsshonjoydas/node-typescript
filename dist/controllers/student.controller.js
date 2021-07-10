@@ -31,7 +31,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.routes = void 0;
 const service = __importStar(require("../services/student.services"));
 const getHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const students = yield service.getStudent();
+    const students = yield service.getAll(collection);
     res.send(students);
 });
 const collection = service.StudentDocument;
