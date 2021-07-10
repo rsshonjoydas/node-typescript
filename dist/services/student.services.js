@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.save = exports.getAll = exports.StudentDocument = void 0;
+exports.save = exports.getAll = exports.convert = exports.StudentViewModel = exports.StudentDocument = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 const StudentSchema = new Schema({
@@ -23,13 +23,29 @@ const StudentSchema = new Schema({
     modifiedAt: { type: Date },
 });
 exports.StudentDocument = mongoose_1.default.model('Student', StudentSchema, 'Students');
-const convert = (model) => {
-    let viewModel = Object.assign({}, JSON.parse(JSON.stringify(model)));
+class StudentViewModel {
+    constructor() {
+        this.id = '';
+        this.name = '';
+        this.phone = '';
+        this.email = '';
+    }
+}
+exports.StudentViewModel = StudentViewModel;
+const convert = (model, vm) => {
+    const source = Object.create(model);
+    const keys = Object.keys(vm);
+    let viewModel = {};
+    keys.forEach((key) => {
+        viewModel[key] = source[key];
+    });
     return viewModel;
 };
-const getAll = (collection) => __awaiter(void 0, void 0, void 0, function* () {
+exports.convert = convert;
+const getAll = (collection, vm) => __awaiter(void 0, void 0, void 0, function* () {
     const models = yield collection.find().exec();
-    return models;
+    const vms = models.map((model) => exports.convert(model, vm));
+    return vms;
 });
 exports.getAll = getAll;
 const save = (collection, payload) => __awaiter(void 0, void 0, void 0, function* () {

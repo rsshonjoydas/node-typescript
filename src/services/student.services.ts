@@ -24,19 +24,19 @@ export const StudentDocument: mongoose.Model<Student> = mongoose.model<Student>(
   'Students'
 );
 
-export interface StudentViewModel {
+export interface IStudentViewModel {
   id: string;
   name: string;
   phone: string;
   email: string;
 }
 
-const convert = (model: Student): StudentViewModel => {
-  let viewModel: StudentViewModel = {
-    ...JSON.parse(JSON.stringify(model)),
-  };
-  return viewModel;
-};
+export class StudentViewModel implements IStudentViewModel {
+  id: string = '';
+  name: string = '';
+  phone: string = '';
+  email: string = '';
+}
 
 export interface StudentRequestModel {
   id: string;
@@ -45,11 +45,28 @@ export interface StudentRequestModel {
   email: string;
 }
 
+export const convert = <T extends mongoose.Document>(
+  model: T,
+  vm: any
+): any => {
+  const source = Object.create(model);
+  const keys = Object.keys(vm);
+
+  let viewModel = {} as any;
+  keys.forEach((key) => {
+    viewModel[key] = source[key];
+  });
+  return viewModel;
+};
+
 export const getAll = async <T extends mongoose.Document>(
-  collection: mongoose.Model<T>
-): Promise<T[]> => {
+  collection: mongoose.Model<T>,
+  vm: any
+): Promise<any[]> => {
   const models = await collection.find().exec();
-  return models;
+  const vms = models.map((model) => convert<T>(model, vm));
+
+  return vms;
 };
 
 export const save = async <T extends mongoose.Model<any>>(
